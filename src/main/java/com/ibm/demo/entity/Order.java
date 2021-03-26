@@ -3,13 +3,16 @@ package com.ibm.demo.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Id;
+
 public class Order {
 	@NotNull
 	@NotBlank
 	private String item;
 	@NotNull
 	private float price;
-	private int id; // TODO GENRATED BY DB AS PK
+	@Id
+	private String id; // TODO GENRATED BY DB AS PK
 
 	public String getItem() {
 		return item;
@@ -30,11 +33,11 @@ public class Order {
 		this.price = price;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
