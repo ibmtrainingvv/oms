@@ -65,7 +65,7 @@ public class OrderController {
 
 	@DeleteMapping("/order/{id}")
 
-	void deleteOrder(@PathVariable("id") int orderID) {
+	void deleteOrder(@PathVariable("id") String orderID) {
 		System.out.println(orderID);
 		orderService.deleteOrder(orderID);
 	}

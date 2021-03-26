@@ -28,8 +28,8 @@ public class OrderService {
 		orderRepository.save(order);
 	}
 
-	public void deleteOrder(int orderID) {
-		System.out.println("order deleted");
+	public void deleteOrder(String orderID) {
+		orderRepository.deleteById(orderID);
 	}
 
 	public List<Order> getOrders() {
