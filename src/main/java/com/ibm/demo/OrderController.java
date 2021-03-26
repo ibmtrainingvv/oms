@@ -1,6 +1,7 @@
 package com.ibm.demo;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -38,21 +39,28 @@ public class OrderController {
 		}
 	}
 
+	/**
+	 * method to search for an order
+	 * 
+	 * @param orderId
+	 * @return zero or matching order
+	 */
 	@GetMapping("/order/{id}")
-	Order getOrder(@PathVariable("id") int orderID) {
+	Optional<Order> getOrder(@PathVariable("id") String orderID) {
 		return orderService.getOrder(orderID);
 	}
 
 	@GetMapping("/order/")
 	List<Order> getOrders() {
 		return orderService.getOrders();
+
 	}
 
 	@PutMapping("/order/{id}")
-	void updateOrder(@RequestBody @Valid Order order, BindingResult bindingResult, @PathVariable("id") int orderID) {
+	void updateOrder(@RequestBody @Valid Order order, BindingResult bindingResult, @PathVariable("id") String orderID) {
 		validateModel(bindingResult);
-
-		orderService.updateOrder(orderID);
+		order.setId(orderID);
+		orderService.updateOrder(order);
 	}
 
 	@DeleteMapping("/order/{id}")
